@@ -14,7 +14,7 @@ Future<void> main() async {
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: isLoggedIn! ? 'login' : 'login',
+      initialRoute: isLoggedIn! ? 'bottomNavBar' : 'login',
       routes: {
         'login': (context) => Login(),
         'bottomNavBar': (context) => BottomNavBar(),
