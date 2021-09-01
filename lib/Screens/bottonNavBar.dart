@@ -23,7 +23,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
         //       .getTranslatedValue('privacy_policy')),
         // ),
         body: WebView(
-          initialUrl: 'https://natronz.com/index.php',
+          initialUrl: 'https://natronz.com',
           onWebViewCreated: (WebViewController webViewController){
             _controller.complete(webViewController);
           },
