@@ -1,24 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:webview_flutter/webview_flutter.dart';
+import 'dart:async';
 
-import 'Screens/bottonNavBar.dart';
-import 'Screens/login.dart';
-
-Future<void> main() async {
-  // WidgetsFlutterBinding.ensureInitialized();
-  // var prefs = await SharedPreferences.getInstance();
-  // var isLoggedIn = (prefs.getBool('isLoggedIn') == null)
-  //     ? false
-  //     : prefs.getBool('isLoggedIn');
-
-  runApp(
-    MaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute: 'bottomNavBar',
-      routes: {
-        'login': (context) => Login(),
-        'bottomNavBar': (context) => BottomNavBar(),
-      },
-    ),
-  );
+void main() {
+  runApp(HomePage());
 }
+
+
+class HomePage extends StatelessWidget {
+  final Completer <WebViewController> _controller = Completer<
+      WebViewController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          body: WebView(
+            initialUrl: 'https://natronz.com',
+            onWebViewCreated: (WebViewController webViewController) {
+              _controller.complete(webViewController);
+            },
+            javascriptMode: JavascriptMode.unrestricted,
+          ),
+        )
+    );
+  }
+}
+
